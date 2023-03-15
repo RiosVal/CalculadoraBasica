@@ -5,10 +5,19 @@ let calculation = []
 
 function calculate(button){
     const value = button.textContent
-    
-    calculation.push(value)
+    if (value === "CLEAR"){
+        calculation = []
+        screenDisplay.textContent = '.'
+    }
+    else if (value === "="){
+        screenDisplay.textContent = eval(accumulativeCalculation)
+    }
+    else{
+        calculation.push(value)
+        accumulativeCalculation = calculation.join('')
+        screenDisplay.textContent = accumulativeCalculation
+    }
 
-    console.log(calculation)
 }
 
 buttons.forEach(button => button.addEventListener('click', () => calculate(button)))
